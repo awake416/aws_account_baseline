@@ -9,7 +9,7 @@ module manage_workspaces {
 
   env = "dev"
   prefix = "aws_account_baseline"
-  workspace_exec_mode = "local"
+//  workspace_exec_mode = "local"
   oauth_token_id = var.oauth_token_id
   aws_access_key_id = var.aws_access_key_id
   aws_secret_access_key = var.aws_secret_access_key
