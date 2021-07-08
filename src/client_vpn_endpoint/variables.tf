@@ -12,6 +12,6 @@ variable retention_in_days {
 }
 
 variable "auth_type" {
-  default     = "ac"
+  default     = "ad"
   description = "server_cert|ad|saml"
 }
