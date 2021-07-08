@@ -3,7 +3,7 @@ terraform {
     organization = "awake416"
 
     workspaces {
-      prefix = "aws_account_baseline-"
+      prefix = "aws_account_baselines-"
     }
   }
 

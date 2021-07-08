@@ -20,5 +20,9 @@ variable "access_control" {
   default = "infra"
 }
 
+variable "directory_id" {
+  default = ""
+}
+
 variable AWS_ACCESS_KEY_ID {}
 variable AWS_SECRET_ACCESS_KEY {}
