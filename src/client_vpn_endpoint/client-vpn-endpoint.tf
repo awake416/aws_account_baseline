@@ -11,7 +11,7 @@ locals {
 module tls-certs {
   count = local.create_certs
   source  = "app.terraform.io/awake416/tls-certs/aws"
-  version = "0.0.2"
+  version = "0.0.6"
   subject = {
     common_name = "home-vpn"
     organization = "home"
