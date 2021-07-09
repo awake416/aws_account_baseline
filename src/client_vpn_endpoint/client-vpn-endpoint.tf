@@ -5,15 +5,15 @@ locals {
     saml        = "federated-authentication"
     server_cert = "certificate-authentication"
   }
-  create_certs = var.server_cert_arn == "" ? 1 : 0
+  create_certs    = var.server_cert_arn == "" ? 1 : 0
 }
 
 module tls-certs {
-  count = local.create_certs
+  count   = local.create_certs
   source  = "app.terraform.io/awake416/tls-certs/aws"
   version = "0.0.7"
   subject = {
-    common_name = "home-vpn"
+    common_name  = "home-vpn"
     organization = "home"
   }
 }
@@ -63,8 +63,15 @@ resource aws_ec2_client_vpn_endpoint client_vpn {
 
 }
 
-resource "aws_ec2_client_vpn_network_association" client_vpn {
+resource aws_ec2_client_vpn_network_association client_vpn {
   count                  = length(var.subnet_ids)
   client_vpn_endpoint_id = aws_ec2_client_vpn_endpoint.client_vpn.id
   subnet_id              = element(var.subnet_ids, count.index)
+}
+
+resource aws_ec2_client_vpn_authorization_rule client_vpn {
+  client_vpn_endpoint_id = aws_ec2_client_vpn_endpoint.client_vpn.id
+  target_network_cidr    = var.subnet_ids
+  authorize_all_groups   = true
+  description            = "Allow All users to connect"
 }
