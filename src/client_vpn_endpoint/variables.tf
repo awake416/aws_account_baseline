@@ -15,3 +15,7 @@ variable "auth_type" {
   default     = "ad"
   description = "server_cert|ad|saml"
 }
+
+variable "subnet_cidrs" {
+  type = list(string)
+}

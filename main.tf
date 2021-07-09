@@ -61,6 +61,7 @@ module client_vpn_endpoint {
   client_cidr         = "10.1.0.0/20"
   env                 = var.env
   subnet_ids          = module.dynamic_subnets.public_subnet_ids
+  subnet_cidrs        = module.dynamic_subnets.public_subnet_cidrs
 }
 
 module "vpc_endpoints" {

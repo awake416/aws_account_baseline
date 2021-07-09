@@ -70,8 +70,10 @@ resource aws_ec2_client_vpn_network_association client_vpn {
 }
 
 resource aws_ec2_client_vpn_authorization_rule client_vpn {
+  for_each = toset(var.subnet_cidrs)
   client_vpn_endpoint_id = aws_ec2_client_vpn_endpoint.client_vpn.id
-  target_network_cidr    = var.subnet_ids
+  target_network_cidr    = each.key
   authorize_all_groups   = true
-  description            = "Allow All users to connect"
+  description            = "Allow All users to connect to subnet ${each.key}"
+  # TODO - add options to supply AD groups later on
 }
