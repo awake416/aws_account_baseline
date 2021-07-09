@@ -18,6 +18,25 @@ module "private_vpc" {
   name                             = "app_vpc"
   cidr_block                       = var.app_vpc_cidr_block
   assign_generated_ipv6_cidr_block = false
+  security_group_use_name_prefix = true
+  security_group_rules = [
+    {
+      type        = "egress"
+      from_port   = 0
+      to_port     = 65535
+      protocol    = "-1"
+      cidr_blocks = ["0.0.0.0/0"]
+      description = "Allow ALL egress traffic"
+    },
+    {
+      type        = "ingress"
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      cidr_blocks = ["10.1.0.0/20"]
+      description = "Allow SSH traffic from client vpn"
+    }
+  ]
   tags                             = merge(local.common_tags, {
     "Name": "app_vpc"
   })
