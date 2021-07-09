@@ -33,7 +33,7 @@ resource aws_cloudwatch_log_group client_vpn_lg {
 
 resource aws_cloudwatch_log_stream client_vpn_stream {
   log_group_name = aws_cloudwatch_log_group.client_vpn_lg.name
-  name           = "${name}-stream.log"
+  name           = "${var.name}-stream.log"
 }
 
 resource aws_ec2_client_vpn_endpoint client_vpn {
