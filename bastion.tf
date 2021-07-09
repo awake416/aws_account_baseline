@@ -57,18 +57,18 @@ resource aws_secretsmanager_secret_version public_key {
   secret_string = module.aws_key_pair.public_key
 }
 
-#module ec2-bastion-server {
-#  source  = "cloudposse/ec2-bastion-server/aws"
-#  version = "0.28.0"
-#
-#  enabled                     = var.enabled
-#  instance_type               = var.instance_type
-#  security_groups             = compact(concat([
-#    module.private_vpc.vpc_default_security_group_id], var.security_groups))
-#  subnets                     = module.dynamic_subnets.public_subnet_ids
-#  key_name                    = module.aws_key_pair.key_name
-#  user_data                   = var.user_data
-#  vpc_id                      = module.private_vpc.vpc_id
-#  associate_public_ip_address = var.associate_public_ip_address
-#  environment                 = var.env
-#}
+module ec2-bastion-server {
+  source  = "cloudposse/ec2-bastion-server/aws"
+  version = "0.28.0"
+
+  enabled                     = var.enabled
+  instance_type               = var.instance_type
+  security_groups             = compact(concat([
+    module.private_vpc.vpc_default_security_group_id], var.security_groups))
+  subnets                     = module.dynamic_subnets.public_subnet_ids
+  key_name                    = module.aws_key_pair.key_name
+  user_data                   = var.user_data
+  vpc_id                      = module.private_vpc.vpc_id
+  associate_public_ip_address = var.associate_public_ip_address
+  environment                 = var.env
+}
