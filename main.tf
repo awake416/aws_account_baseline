@@ -39,7 +39,7 @@ module client_vpn_endpoint {
   source              = "./src/client_vpn_endpoint"
   name                = "aws_to_home"
   active_directory_id = var.directory_id
-  client_cidr         = module.dynamic_subnets.public_subnet_cidrs[0]
+  client_cidr         = "10.1.0.0/20"
   env                 = var.env
   subnet_ids          = module.dynamic_subnets.public_subnet_ids
 }
