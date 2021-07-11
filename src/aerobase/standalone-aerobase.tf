@@ -46,6 +46,7 @@ module "aerobase_instance" {
   subnet                      = var.subnets[0]
   ami_owner                   = var.ami_owner
   ami                         = var.ami_id
+  instance_type               = "t4g.xlarge"
   associate_public_ip_address = false
   name                        = "aerobase-standalone"
   namespace                   = "lab"
