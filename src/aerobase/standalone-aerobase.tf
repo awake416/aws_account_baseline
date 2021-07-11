@@ -44,6 +44,8 @@ module "aerobase_instance" {
   vpc_id                      = data.aws_vpc.vpc.id
   security_groups             = var.security_groups
   subnet                      = var.subnets[0]
+  ami_owner                   = var.ami_owner
+  ami                         = var.ami_id
   associate_public_ip_address = false
   name                        = "aerobase-standalone"
   namespace                   = "lab"

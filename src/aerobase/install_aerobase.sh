@@ -1,10 +1,8 @@
 #! /bin/bash
-sudo apt-get update
-sudo apt-get install -y apache2
-sudo systemctl start apache2
-sudo systemctl enable apache2
-# This is just a test
-echo "<h1>Deployed via Terraform</h1>" | sudo tee /var/www/html/index.html
+sudo yum update -y
+sudo amazon-linux-extras install -y lamp-mariadb10.2-php7.2 php7.2
+sudo systemctl start httpd
+sudo systemctl enable httpd
 
-sudo apt-get install -y openjdk-8-jdk
-sudo apt-get install -y aerobase_2.4.2_xenial.deb aerobase-iam_2.4.2_xenial.deb
+sudo yum install -y java-1.8.0-openjdk
+sudo yum install -y aerobase-2.4.2.el7.x86_64.rpm aerobase-iam-2.4.2.el7.x86_64.rpm
