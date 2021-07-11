@@ -44,7 +44,7 @@ module "aerobase_instance" {
   name                        = "aerobase-standalone"
   namespace                   = "lab"
   stage                       = var.env
-  additional_ips_count        = 1
+#  additional_ips_count        = 1
   assign_eip_address          = false
   ebs_volume_count            = 1
   user_data                   = file("${path.module}/install_aerobase.sh")
