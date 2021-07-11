@@ -32,6 +32,11 @@ resource aws_secretsmanager_secret public_key {
   }
 }
 
+resource aws_secretsmanager_secret_version public_key {
+  secret_id     = aws_secretsmanager_secret.public_key.id
+  secret_string = module.aws_key_pair.public_key
+}
+
 module "aerobase_instance" {
   source = "cloudposse/ec2-instance/aws"
 
