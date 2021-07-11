@@ -2,7 +2,9 @@ module aws_key_pair {
   source              = "cloudposse/key-pair/aws"
   version             = "0.16.1"
   attributes          = [
-    "ssh", "key", "aerobase"]
+    "ssh",
+    "key",
+    "aerobase"]
   ssh_public_key_path = "./security/"
   generate_ssh_key    = var.generate_ssh_key
 }
@@ -43,8 +45,9 @@ module "aerobase_instance" {
   namespace                   = "lab"
   stage                       = var.env
   additional_ips_count        = 1
+  assign_eip_address          = false
   ebs_volume_count            = 1
-  user_data = file("${path.module}/install_aerobase.sh")
+  user_data                   = file("${path.module}/install_aerobase.sh")
   security_group_rules        = [
     {
       type        = "egress"
