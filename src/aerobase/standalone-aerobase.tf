@@ -45,7 +45,7 @@ module "aerobase_instance" {
   stage                       = var.env
   additional_ips_count        = 1
   ebs_volume_count            = 1
-  user_data = file("install_aerobase.sh")
+  user_data = file("${path.module}/install_aerobase.sh")
   security_group_rules        = [
     {
       type        = "egress"
