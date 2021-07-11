@@ -44,12 +44,11 @@ module "aerobase_instance" {
   vpc_id                      = data.aws_vpc.vpc.id
   security_groups             = var.security_groups
   subnet                      = var.subnets[0]
-  # One per subnet if required :-)
-  associate_public_ip_address = true
+  associate_public_ip_address = false
   name                        = "aerobase-standalone"
   namespace                   = "lab"
   stage                       = var.env
-#  additional_ips_count        = 1
+  additional_ips_count        = 0
   assign_eip_address          = false
   ebs_volume_count            = 1
   user_data                   = file("${path.module}/install_aerobase.sh")
@@ -68,7 +67,7 @@ module "aerobase_instance" {
       to_port     = 22
       protocol    = "tcp"
       cidr_blocks = [
-        "0.0.0.0/0"]
+        data.aws_vpc.vpc.cidr_block]
     },
     {
       type        = "ingress"
