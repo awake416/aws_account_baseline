@@ -2,8 +2,7 @@ module aws_key_pair {
   source              = "cloudposse/key-pair/aws"
   version             = "0.16.1"
   attributes          = [
-    "ssh",
-    "key"]
+    "ssh", "key", "aerobase"]
   ssh_public_key_path = "./security/"
   generate_ssh_key    = var.generate_ssh_key
 }
