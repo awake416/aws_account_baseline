@@ -64,6 +64,14 @@ module client_vpn_endpoint {
   subnet_cidrs        = module.dynamic_subnets.public_subnet_cidrs
 }
 
+module aerobase_sso {
+  source = "./src/aerobase"
+  env = var.env
+  subnets = module.dynamic_subnets.private_subnet_ids
+  security_groups = compact(concat([
+    module.private_vpc.vpc_default_security_group_id], var.security_groups))
+}
+
 module "vpc_endpoints" {
   source  = "cloudposse/vpc/aws//modules/vpc-endpoints"
   version = "0.26.1"
